@@ -5,18 +5,16 @@ import matplotlib.pyplot as plt
 env = gym.make("CartPole-v1", render_mode="human")
 
 num_episodes = 1000  
-learning_rate = 0.1  # Step size for parameter updates
-noise_scale = 0.1  # Noise scale for parameter perturbation
-gamma = 0.99  # Discount factor
+learning_rate = 0.1  
+noise_scale = 0.1  
+gamma = 0.99  # discount
 
 weights = np.random.randn(4) * 0.1 
 
 def policy(state, weights):
-    """Decide action based on policy."""
     return 1 if np.dot(state, weights) > 0 else 0
 
 def run_episode(env, weights):
-    """Run one episode and return total reward."""
     state = env.reset()[0]
     total_reward = 0
     done = False
@@ -27,7 +25,6 @@ def run_episode(env, weights):
         state = next_state
     return total_reward
 
-# Training
 rewards = []  
 best_weights = weights  
 best_reward = 0  
@@ -39,7 +36,6 @@ for episode in range(num_episodes):
     total_reward = run_episode(env, new_weights)
     rewards.append(total_reward)
 
-    # If the new weights perform better, update best_weights
     if total_reward > best_reward:
         best_reward = total_reward
         best_weights = new_weights

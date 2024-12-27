@@ -18,11 +18,11 @@ rewards = []
 # Q-learning parameters
 num_episodes = 1000  
 learning_rate = 0.1 
-gamma = 0.99  # discount factor 
-epsilon = 1.0  # Exploration rate (epsilon-greedy)
-epsilon_decay = 0.995  # Decay rate for epsilon
-min_epsilon = 0.01  # Minimum exploration rate
-bins = [10, 10, 10, 10]  # Discretization bins for state space
+gamma = 0.99  # discount 
+epsilon = 1.0  # epsilon greedy exploration rate
+epsilon_decay = 0.995  
+min_epsilon = 0.01  
+bins = [10, 10, 10, 10]  # discretization
 
 def discretize_state(state, state_bounds, bins):
     ratios = [(state[i] - state_bounds[i][0]) / (state_bounds[i][1] - state_bounds[i][0]) for i in range(len(state))]
@@ -31,9 +31,9 @@ def discretize_state(state, state_bounds, bins):
 
 # Q-table
 state_bounds = list(zip(env.observation_space.low, env.observation_space.high))
-state_bounds[1] = [-0.5, 0.5]  # Clip for cart velocity
-state_bounds[3] = [-50, 50]  # Clip for pole velocity
-q_table = np.zeros(bins + [env.action_space.n])  # Discretized states × actions
+state_bounds[1] = [-0.5, 0.5]  #cart velocity
+state_bounds[3] = [-50, 50]  # pole velocity
+q_table = np.zeros(bins + [env.action_space.n])  
 
 # Q-learning loop
 t0 = time.time()
