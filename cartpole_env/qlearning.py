@@ -17,10 +17,10 @@ rewards = []
 
 # Q-learning parameters
 num_episodes = 1000  
-learning_rate = 0.1 
+learning_rate = 0.1 #important not to set high, then it only considers recent info more
 gamma = 0.99  # discount 
 epsilon = 1.0  # epsilon greedy exploration rate
-epsilon_decay = 0.995  
+epsilon_decay = 0.995
 min_epsilon = 0.01  
 bins = [10, 10, 10, 10]  # discretization
 

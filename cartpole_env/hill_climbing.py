@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 env = gym.make("CartPole-v1", render_mode="human")
 
 num_episodes = 1000  
-learning_rate = 0.1  
-noise_scale = 0.1  
+learning_rate = 0.1 
+noise_scale = 0.1 
 gamma = 0.99  # discount
 
 weights = np.random.randn(4) * 0.1 
@@ -40,14 +40,20 @@ for episode in range(num_episodes):
         best_reward = total_reward
         best_weights = new_weights
 
-    noise_scale *= 0.99
+    if total_reward > 200:
+        success_count += 1
+    else:
+        success_count = 0  
+
+    # stop if reward exceeds 200 for 5 episodes in a row
+    if success_count >= 4:
+        print(f"Converged in {episode} episodes.")
+        break
+
+    noise_scale *= 0.999
 
     if (episode + 1) % 10 == 0:
         print(f"Episode {episode + 1}/{num_episodes}, Best Reward: {best_reward}")
-        if best_reward > 200:
-            count += 1
-        if count > 5:
-            break
 
 plt.plot(rewards)
 plt.title("Total reward over episodes - Hill Climbing")
@@ -60,7 +66,8 @@ state = env.reset()[0]
 done = False
 total_reward = 0
 while not done:
-    env.render()
+    if episode % 50 == 0:
+        env.render()
     action = policy(state, best_weights)
     state, reward, done, _, _ = env.step(action)
     total_reward += reward
