@@ -1,0 +1,35 @@
+name: Generate Plots on Commit
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  generate-plots:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt 
+
+    - name: Run hill_climbing.py
+      run: python cartpole_env/hill_climbing.py
+
+    - name: Run qlearning.py
+      run: python cartpole_env/qlearning.py
+
+    - name: Upload plots
+      uses: actions/upload-artifact@v3
+      with:
+        name: Generated-Plots
+        path: cartpole_env/results/ 
