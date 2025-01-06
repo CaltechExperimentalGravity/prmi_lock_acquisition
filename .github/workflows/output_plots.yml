@@ -41,7 +41,7 @@ jobs:
     - name: Run hill_climbing.py
       run: |
         export DISPLAY=:99  # Ensure the virtual display is used
-        python pole_env/hill_climbing.py
+        python cartpole_env/hill_climbing.py
 
     # Step 7: Upload generated plots as artifacts
     - name: Upload plots
