@@ -3,10 +3,10 @@ name: Generate and Visualize Plots
 on:
   push:
     branches:
-      - main  # Trigger on commits to the main branch
+      - main
   pull_request:
     branches:
-      - main  # Optional: Run on pull requests to the main branch
+      - main
 
 jobs:
   generate-plots:
@@ -17,12 +17,12 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    # Step 2: Install a virtual display for rendering
-    - name: Set up virtual display
+    # Step 2: Install a virtual display
+    - name: Install Xvfb (virtual display)
       run: sudo apt-get install -y xvfb
 
     # Step 3: Start the virtual display
-    - name: Start virtual display
+    - name: Start Xvfb
       run: |
         export DISPLAY=:99
         Xvfb :99 -screen 0 1024x768x24 &
@@ -39,11 +39,13 @@ jobs:
 
     # Step 6: Run the script to generate plots
     - name: Run hill_climbing.py
-      run: python cartpole_env/hill_climbing.py
+      run: |
+        export DISPLAY=:99  # Ensure the virtual display is used
+        python pole_env/hill_climbing.py
 
     # Step 7: Upload generated plots as artifacts
     - name: Upload plots
       uses: actions/upload-artifact@v3
       with:
         name: Generated-Plots
-        path: cartpole_env/results/  # Adjust this path to match where your script saves plots
+        path: cartpole_env/results/  # Adjust path if needed
