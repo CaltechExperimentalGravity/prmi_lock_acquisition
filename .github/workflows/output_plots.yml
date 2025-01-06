@@ -1,40 +1,49 @@
-name: Generate Plots on Commit
+name: Generate and Visualize Plots
 
 on:
   push:
     branches:
-      - main 
+      - main  # Trigger on commits to the main branch
+  pull_request:
+    branches:
+      - main  # Optional: Run on pull requests to the main branch
 
 jobs:
   generate-plots:
     runs-on: ubuntu-latest
 
     steps:
+    # Step 1: Checkout the repository
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Step 2: Install a virtual display for rendering
     - name: Set up virtual display
       run: sudo apt-get install -y xvfb
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-
+    # Step 3: Start the virtual display
     - name: Start virtual display
       run: |
         export DISPLAY=:99
         Xvfb :99 -screen 0 1024x768x24 &
 
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt 
+    # Step 4: Set up Python environment
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
 
+    # Step 5: Install dependencies
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    # Step 6: Run the script to generate plots
     - name: Run hill_climbing.py
       run: python cartpole_env/hill_climbing.py
 
-    - name: Run qlearning.py
-      run: python cartpole_env/qlearning.py
-
+    # Step 7: Upload generated plots as artifacts
     - name: Upload plots
       uses: actions/upload-artifact@v3
       with:
         name: Generated-Plots
-        path: cartpole_env/results/ 
+        path: cartpole_env/results/  # Adjust this path to match where your script saves plots
