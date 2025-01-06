@@ -1,3 +1,4 @@
 gym[classic_control]  # For CartPole and rendering
-numpy                 # For numerical operations
-matplotlib            # For plotting
+numpy                
+matplotlib            
+pygame
