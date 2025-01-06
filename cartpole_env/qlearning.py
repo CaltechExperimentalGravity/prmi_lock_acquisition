@@ -90,4 +90,6 @@ while not done:
 print(f"Test Reward: {total_reward}")
 env.close()
 
+plt.savefig('cartpole_env/results/qlearning_plot.png')
+
 

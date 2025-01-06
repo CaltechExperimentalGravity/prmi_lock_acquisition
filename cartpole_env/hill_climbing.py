@@ -74,3 +74,6 @@ while not done:
 env.close()
 
 print(f"Test Reward: {total_reward}")
+
+
+plt.savefig('cartpole_env/results/hill_climbing_plot.png')
