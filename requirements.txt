@@ -4,4 +4,4 @@ gym
 pandas 
 scipy  
 tqdm
-
+pygame
