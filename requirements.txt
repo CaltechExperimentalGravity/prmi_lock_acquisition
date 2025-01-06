@@ -1,4 +1,3 @@
 gym[classic_control]  # For CartPole and rendering
 numpy                
 matplotlib            
-pygame
