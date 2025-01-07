@@ -79,27 +79,27 @@ for episode in tqdm(range(num_episodes)):
     if (episode + 1) % 100 == 0:
         print(f"Episode {episode + 1}/{num_episodes}, Total Reward: {total_reward}, Epsilon: {epsilon:.3f}")
 
-print("Training complete. Testing the agent...")
+# print("Training complete. Testing the agent...")
 
 
-plt.plot(rewards)
-plt.xlabel("Episode")
-plt.ylabel("Rewards")
-plt.title("Rewards over episodes")
-plt.show()
+# plt.plot(rewards)
+# plt.xlabel("Episode")
+# plt.ylabel("Rewards")
+# plt.title("Rewards over episodes")
+# plt.show()
 
-state = discretize_state(env.reset()[0], state_bounds, bins)
-done = False
-total_reward = 0
-while not done:
-    env.render()
-    action = np.argmax(q_table[state])  # exploiting learned policy
-    next_state, reward, done, _, _ = env.step(action)
-    state = discretize_state(next_state, state_bounds, bins)
-    total_reward += reward
+# state = discretize_state(env.reset()[0], state_bounds, bins)
+# done = False
+# total_reward = 0
+# while not done:
+#     env.render()
+#     action = np.argmax(q_table[state])  # exploiting learned policy
+#     next_state, reward, done, _, _ = env.step(action)
+#     state = discretize_state(next_state, state_bounds, bins)
+#     total_reward += reward
 
-print(f"Test Reward: {total_reward}")
-env.close()
+# print(f"Test Reward: {total_reward}")
+# env.close()
 
 plt.savefig('cartpole_env/results/qlearning_plot.png')
 
