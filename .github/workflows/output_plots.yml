@@ -38,10 +38,10 @@ jobs:
         export DISPLAY=:99  # Ensure the virtual display is used
         python cartpole_env/qlearning.py
 
-    - name: Run hill_climbing.py
-      run: |
-        export DISPLAY=:99  # Ensure the virtual display is used
-        python cartpole_env/hill_climbing.py
+    # - name: Run hill_climbing.py
+    #   run: |
+    #     export DISPLAY=:99  # Ensure the virtual display is used
+    #     python cartpole_env/hill_climbing.py
 
     - name: Upload plots
       uses: actions/upload-artifact@v3
