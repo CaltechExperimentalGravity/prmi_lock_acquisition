@@ -1,4 +1,4 @@
-gym[classic_control]  # For CartPole and rendering
+gym[classic_control]==0.26.2  # For CartPole and rendering
 numpy==1.23.5               
 matplotlib            
 tqdm

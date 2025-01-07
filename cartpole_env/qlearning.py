@@ -4,6 +4,17 @@ reference for qlearning: https://medium.com/@nancyjemi/level-up-understanding-q-
 reference for parameters: https://en.wikipedia.org/wiki/Q-learning
 """
 
+import os
+
+# Limit the number of threads for various libraries
+os.environ["OMP_NUM_THREADS"] = "1"  # OpenMP
+os.environ["MKL_NUM_THREADS"] = "1"  # Intel MKL
+os.environ["NUMEXPR_NUM_THREADS"] = "1"  # NumExpr
+os.environ["OPENBLAS_NUM_THREADS"] = "1"  # OpenBLAS
+os.environ["BLIS_NUM_THREADS"] = "1"  # BLIS
+os.environ["VECLIB_MAXIMUM_THREADS"] = "1"  # macOS Accelerate/vecLib
+os.environ["TBB_NUM_THREADS"] = "1"  # Intel TBB
+
 import gym
 import numpy as np
 import matplotlib.pyplot as plt
