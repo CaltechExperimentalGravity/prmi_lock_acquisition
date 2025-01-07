@@ -101,6 +101,6 @@ for episode in tqdm(range(num_episodes)):
 # print(f"Test Reward: {total_reward}")
 # env.close()
 
-plt.savefig('cartpole_env/results/qlearning_plot.png')
+# plt.savefig('cartpole_env/results/qlearning_plot.png')
 
 
