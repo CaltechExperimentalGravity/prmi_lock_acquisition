@@ -82,12 +82,12 @@ for episode in tqdm(range(num_episodes)):
 # print("Training complete. Testing the agent...")
 
 
-plt.plot(rewards)
-plt.xlabel("Episode")
-plt.ylabel("Rewards")
-plt.title("Rewards over episodes")
-plt.show()
-env.close()
+# plt.plot(rewards)
+# plt.xlabel("Episode")
+# plt.ylabel("Rewards")
+# plt.title("Rewards over episodes")
+# plt.show()
+# env.close()
 
 # state = discretize_state(env.reset()[0], state_bounds, bins)
 # done = False
