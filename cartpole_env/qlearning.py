@@ -87,6 +87,7 @@ plt.xlabel("Episode")
 plt.ylabel("Rewards")
 plt.title("Rewards over episodes")
 plt.show()
+env.close()
 
 # state = discretize_state(env.reset()[0], state_bounds, bins)
 # done = False
@@ -99,7 +100,7 @@ plt.show()
 #     total_reward += reward
 
 # print(f"Test Reward: {total_reward}")
-# env.close()
+
 
 # plt.savefig('cartpole_env/results/qlearning_plot.png')
 
