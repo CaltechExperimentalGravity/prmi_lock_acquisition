@@ -50,7 +50,7 @@ jobs:
         path: cartpole_env/ 
     
     - name: Upload PPO Training Plot
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4 
       with:
         name: PPO_Training_Plot
         path: cartpole_env/ppo_training.png
